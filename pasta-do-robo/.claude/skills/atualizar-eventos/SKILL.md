@@ -12,7 +12,7 @@ description: Atualiza robo/eventos.csv com as divulgações econômicas dos EUA 
 2. Converta para o horário de Brasília:
    - Do 1º domingo de novembro ao 2º domingo de março (horário de inverno nos EUA): some 2 horas (8h30 → 10h30; 14h → 16h).
    - No resto do ano: some 1 hora (8h30 → 9h30; 14h → 15h).
-   - O Brasil não tem horário de verão.
+   - O Brasil não tem horário de verão (o governo descartou a volta para 2026/2027). Se isso mudar, ajuste a conversão e avise o Leonardo.
 3. Formato de cada linha: `AAAA-MM-DD HH:MM;descrição`, descrição sem acentos, em ordem de data. Siga o que já existe no arquivo (cabeçalho, se houver).
 4. Cubra pelo menos os próximos 60 dias, sem repetir linhas. Não apague linhas antigas sem perguntar.
 5. Mostre ao Leonardo a lista nova numa tabela (data, hora de Brasília, evento, fonte) e só grave com a aprovação dele.

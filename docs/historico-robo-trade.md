@@ -1,6 +1,6 @@
 # Robô de trade — histórico e decisões
 
-Atualizado em 08/11/2026 (guia v1.2)
+Atualizado em 08/11/2026 (guia v1.3)
 
 ## Objetivo
 Agente autônomo que lê gráficos e indicadores e abre e fecha operações de cripto na Binance sozinho. Todo o desenvolvimento fica centralizado neste projeto.
@@ -25,7 +25,7 @@ Agente autônomo que lê gráficos e indicadores e abre e fecha operações de c
 |---|---|
 | Pacote do robô (v4.1) | arquivo trade-automatizado.zip, enviado na conversa do projeto em 02/10 |
 | Código, atalhos e resultados no PC de casa | pasta trade-automatizado, extraída do zip |
-| Guia para o Claude Code configurar o agente (v1.2) | kit-agente.zip (versão de 08/11) e GitHub `leonardozordo/repo`, ramo `claude/wizardly-lovelace-910v9b`, pasta `pasta-do-robo/` (repositório público); na pasta do robô: CONFIGURAR-AGENTE.md |
+| Guia para o Claude Code configurar o agente (v1.3) | kit-agente.zip (versão de 08/11) e GitHub `leonardozordo/repo`, ramo `claude/wizardly-lovelace-910v9b`, pasta `pasta-do-robo/` (repositório público); na pasta do robô: CONFIGURAR-AGENTE.md |
 | Kit do agente (permissões, seção "Agente" do CLAUDE.md, eventos, rotinas, atalhos) | mesmo kit; vai para dentro da pasta trade-automatizado |
 | Lógica dos trades em linguagem simples | este projeto: claude/logica-do-robo.md (cópia na pasta: LOGICA-DO-ROBO.md) |
 | Regras completas (v4.1), com o racional | este projeto: claude/regras-robo-v4.md (cópia na pasta: REGRAS-v4.md) |
@@ -51,9 +51,10 @@ Agente autônomo que lê gráficos e indicadores e abre e fecha operações de c
 - 07/11/2026: guia v1.1 e kit do agente: item de futuros na Fase 0, permissões reforçadas (e o aviso de que não são um cofre), seção "Agente" para o CLAUDE.md, eventos de 10/11/2026 a 13/01/2027, rotinas /revisao-diaria e /atualizar-eventos, atalhos abrir_agente.bat, abrir_agente_chrome.bat e revisao_diaria.bat. Montado na nuvem, sem acesso ao PC nem à Binance: nada foi testado no Windows.
 - 07/11/2026: kit enviado ao GitHub (`leonardozordo/repo`, ramo `claude/wizardly-lovelace-910v9b`). O repositório é público; recomendação: torná-lo privado.
 - 08/11/2026: revisão do kit (guia v1.2). Corrigido: a revisão diária agendada do jeito padrão abre uma janela e não manda aviso (o guia agora diz isso e mostra como ocultar); o atalho e a rotina da revisão passam a liberar a gravação do arquivo; regras do guia e da seção "Agente" iguais entre si; detalhes da conta internacional da Binance (por iniciativa própria, só derivativos, chave criada nela); stop com closePosition sem quantity nem reduceOnly; mudanças em .claude pedem confirmação. Datas de dezembro conferidas de novo. As duas rotinas foram reconhecidas pelo próprio Claude Code na sessão da nuvem.
+- 08/11/2026 (segunda revisão, guia v1.3): operador e guardião precisam ser agendados sem janela (uma janela a cada 5 minutos atrapalha e pode roubar o foco), e o agendamento aos 40 segundos exige PowerShell ou XML; reinício automático do Windows Update entrou na Fase 0; identificadores das ordens limitados a 32 caracteres simples; mais comandos que listam variáveis bloqueados; atalhos com `call`; arquivo de eventos renomeado (vai até janeiro de 2027); confirmado que o Brasil não terá horário de verão em 2026/2027. A conferência automática do kit ficou guardada em ferramentas/validar_kit.py.
 
 ## Status
-Aguardando o Leonardo: (1) confirmar no app se a conta abre posição de futuros; (2) copiar o kit (v1.2) para a pasta do robô e rodar a Fase 0 com o Claude Code.
+Aguardando o Leonardo: (1) confirmar no app se a conta abre posição de futuros; (2) copiar o kit (v1.3) para a pasta do robô e rodar a Fase 0 com o Claude Code.
 
 ## Próximos passos
 1. [Leonardo] Abrir o app da Binance > Futuros e ver se consegue abrir posição. Se não, escolher entre as opções da seção 14 do guia antes de seguir.

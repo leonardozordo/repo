@@ -1,6 +1,6 @@
 # Configuração do agente de trade no PC — guia para o Claude Code
 
-Projeto "Trade Automatizado" · guia versão 1.2 · 08/11/2026
+Projeto "Trade Automatizado" · guia versão 1.3 · 08/11/2026
 Robô: regras v4.1 (futuros perpétuos da Binance, comprado e vendido, alavancagem de até 5x)
 
 > **Para o Leonardo, antes de tudo**
@@ -10,22 +10,7 @@ Robô: regras v4.1 (futuros perpétuos da Binance, comprado e vendido, alavancag
 >
 > `Leia o arquivo CONFIGURAR-AGENTE.md inteiro e execute a Fase 0. Ao fim de cada fase, pare, me mostre o resultado em linguagem simples e espere minha aprovação para seguir.`
 
-**Mudanças na versão 1.2 (08/11/2026, revisão do kit)**
-- Revisão diária: agendada do jeito padrão, a tarefa abre uma janela enquanto roda e não manda aviso; o guia agora diz isso e mostra como deixá-la oculta. O atalho e a rotina passam a liberar também a gravação do arquivo da revisão.
-- Binance e Brasil: detalhes da conta internacional (por iniciativa própria, só derivativos, chave criada nela) e o que a opção de mercado à vista exige.
-- Regras do guia e do `CLAUDE.md` iguais entre si (Chrome e controle da tela, testes do operador, respostas da Binance).
-- Stop com `closePosition=true`: sem `quantity` e sem `reduceOnly`.
-- Permissões: mudança em `.claude/` pede confirmação explícita; arquivo validado de novo.
-- Kit em `.zip`: desbloquear antes de extrair.
-- Fase 5: leitura estatística corrigida.
-
-**Mudanças na versão 1.1 (07/11/2026)**
-- Binance e Brasil: novo item na Fase 0 e na seção 14. A Binance anunciou que não oferece futuros a residentes no Brasil e restringiu produtos no país a partir de 27/10/2026, com migração dos clientes para a Binance Brasil prevista até 29/10/2026.
-- Kit pronto: permissões reforçadas (seção 9), seção "Agente" para o `CLAUDE.md`, eventos de novembro e dezembro já levantados, rotinas `/revisao-diaria` e `/atualizar-eventos` e atalhos para abrir o agente.
-- Seção 9: as regras de bloqueio são uma barreira de comportamento, não um cofre.
-- Fase 5: 30 dias testam a execução, não provam que a estratégia ganha.
-- Seção 8: a extensão do Chrome trata corretoras como sites de alto risco.
-- O kit foi montado numa sessão na nuvem, sem acesso ao PC nem à Binance: nada dele foi testado no Windows. A Fase 0 confere tudo.
+**Versão 1.3 (08/11/2026).** O que mudou em cada versão está na seção 16.
 
 ---
 
@@ -124,11 +109,12 @@ Cada fase só começa com a aprovação do Leonardo.
 | Internet até a Binance | `py -3 -c "import sys; sys.path.insert(0, 'robo'); import binance, comum; print(comum.fmt_data(binance.testar_conexao()))"` | mostra a hora atual da Binance |
 | Relógio do Windows | Configurações > Hora e idioma > Data e hora > Sincronizar agora | sincronizado (as ordens assinadas dependem disso) |
 | Energia | Configurações > Sistema > Energia | suspensão em "Nunca" com o PC na tomada |
-| Futuros na conta | o Leonardo abre o app da Binance > Futuros e conta o que aparece | consegue abrir posição. Aviso de região, "somente reduzir" ou convite para outra conta: parar e decidir com ele (seção 14) |
+| Reinício automático | Configurações > Windows Update > Opções avançadas > Horário ativo | horário ativo cobrindo o período em que o robô opera. Depois de um reinício, as tarefas só voltam com o Leonardo conectado (seção 6) |
+| Futuros na conta | o Leonardo abre o app da Binance > Futuros, na conta que o robô vai usar, e conta o que aparece | consegue abrir posição. Aviso de região, "somente reduzir" ou convite para outra conta: parar e decidir com ele (seção 14) |
 | Kit do agente | listar `.claude/settings.json`, `.claude/skills/`, `kit-fase0/` e os atalhos `abrir_agente.bat`, `abrir_agente_chrome.bat` e `revisao_diaria.bat` | todos presentes |
 
 Depois de conferir:
-1. Eventos: confira as datas de `kit-fase0/eventos-2026-11-12.csv` nos calendários oficiais (seção 10) e junte ao `robo/eventos.csv`, no mesmo formato e sem repetir linhas. Rode os testes.
+1. Eventos: confira as datas de `kit-fase0/eventos-2026-11-a-2027-01.csv` nos calendários oficiais (seção 10) e junte ao `robo/eventos.csv`, no mesmo formato e sem repetir linhas. Rode os testes.
 2. Permissões: o `.claude/settings.json` do kit já traz as regras da seção 9. Confira com `/permissions` que elas aparecem e mostre ao Leonardo.
 3. `CLAUDE.md`: acrescente ao final o conteúdo de `kit-fase0/CLAUDE-secao-agente.md` (seção "Agente"), para que toda sessão futura siga as regras. Mostre a mudança ao Leonardo antes de salvar.
 
@@ -199,6 +185,7 @@ Se a pasta do robô não existir ou estiver numa versão antiga: o Leonardo baix
 | `RoboTrade\Revisao` | todo dia às 22h | `revisao_diaria.bat` (opção B da seção 11) | opcional |
 
 - As tarefas do robô rodam sem abrir janela. A da revisão (`revisao_diaria.bat`), criada do jeito padrão, abre uma janela de terminal enquanto roda (1 a 2 minutos); para deixá-la oculta, veja a seção 11.1. Hoje as tarefas só rodam com o Leonardo conectado no Windows. Para o modo real, combine com ele rodar mesmo desconectado (o Windows pede a senha ao criar a tarefa) e teste depois de reiniciar o PC.
+- `RoboTrade\Operador` e `RoboTrade\Guardiao` (Fase 3): crie do mesmo jeito que o `agendar.py` cria a simulação, sem janela (por exemplo, com `pyw -3` no lugar de `py -3`). Uma janela a cada 5 minutos atrapalha e pode roubar o foco de quem está digitando. O `schtasks /ST` só aceita hora e minuto: para rodar aos 40 segundos, crie a tarefa pelo PowerShell (`New-ScheduledTaskTrigger`) ou por XML. Confira que nenhuma janela abre.
 - Com o PC desligado, stop e alvos continuam valendo na Binance. Os ajustes (stop no zero a zero, saídas por tendência e por tempo) esperam o PC voltar.
 
 ## 7. Especificação do operador (envio de ordens)
@@ -299,7 +286,7 @@ Se alguma conferência falhar, nada de entrada nova: só proteger o que já exis
 | Posição que o robô não abriu | não mexer; bloquear novas entradas e avisar o Leonardo |
 | Saldo diferente do esperado em mais de 2% | bloquear novas entradas e avisar |
 
-As ordens do robô se reconhecem pelo começo `rt-` nos identificadores.
+As ordens do robô se reconhecem pelo começo `rt-` nos identificadores. Use identificadores com até 32 caracteres, só com letras, números, `-` e `_`: as páginas da Binance divergem sobre o limite exato (32 ou 36) e os símbolos aceitos, e esse formato cabe em todos os casos.
 
 ### 7.9 Parada de emergência (`operador.py parar`, `PARAR.bat` ou arquivo `PARAR.txt`)
 
@@ -452,9 +439,16 @@ O kit já traz `.claude/settings.json` com estas regras (a pasta `.claude` é pr
       "Bash(env *)",
       "Bash(printenv*)",
       "Bash(set)",
+      "Bash(export)",
       "Bash(export -p*)",
+      "Bash(declare -x*)",
+      "Bash(declare -p*)",
+      "Bash(typeset -x*)",
+      "Bash(typeset -p*)",
+      "Bash(cmd *set*)",
       "Bash(*environ*)",
       "Bash(*getenv*)",
+      "Bash(*process.env*)",
       "Bash(*Env:*)",
       "Bash(*env:*)",
       "Bash(*ENV:*)",
@@ -464,17 +458,18 @@ O kit já traz `.claude/settings.json` com estas regras (a pasta `.claude` é pr
       "Bash(*EnvironmentVariable*)",
       "PowerShell(*LIBERAR-REAL*)",
       "PowerShell(*LIBERAR OPERACAO REAL*)",
+      "PowerShell(set)",
+      "PowerShell(cmd *set*)",
       "PowerShell(*environ*)",
       "PowerShell(*getenv*)",
+      "PowerShell(*process.env*)",
       "PowerShell(*Env:*)",
       "PowerShell(*env:*)",
       "PowerShell(*ENV:*)",
       "PowerShell(*BINANCE_API*)",
       "PowerShell(*BINANCE_DEMO*)",
       "PowerShell(*setx*)",
-      "PowerShell(*EnvironmentVariable*)",
-      "PowerShell(set)",
-      "PowerShell(cmd /c set*)"
+      "PowerShell(*EnvironmentVariable*)"
     ],
     "disableBypassPermissionsMode": "disable",
     "disableAutoMode": "disable"
@@ -492,9 +487,9 @@ O kit já traz `.claude/settings.json` com estas regras (a pasta `.claude` é pr
 - **Quando atualizar:** na Fase 0 e no dia 1º de cada mês.
 - **Fontes:** calendário de divulgações do BLS, o órgão de estatísticas do trabalho dos EUA (emprego, inflação ao consumidor e inflação ao produtor), e calendário do Fed, o banco central dos EUA (decisões de juros, entrevista do presidente e atas).
 - **Formato** em `robo/eventos.csv`: `AAAA-MM-DD HH:MM;descrição`, no horário de Brasília.
-- **Fuso:** os EUA estão no horário de inverno desde 01/11/2026. Até o 2º domingo de março, 8h30 em Washington = 10h30 em Brasília e 14h = 16h. No resto do ano, 9h30 e 15h. O Brasil não tem horário de verão.
+- **Fuso:** os EUA estão no horário de inverno desde 01/11/2026. Até o 2º domingo de março, 8h30 em Washington = 10h30 em Brasília e 14h = 16h. No resto do ano, 9h30 e 15h. O Brasil não tem horário de verão (o governo descartou a volta para 2026/2027; confira a cada ano).
 - Os eventos bloqueiam novas entradas de 2h antes até 1h depois, na simulação e no operador. O teste no histórico não usa eventos.
-- Kit: os eventos de 10/11/2026 a 13/01/2027 já estão em `kit-fase0/eventos-2026-11-12.csv`. A sessão que montou o kit não acessava os sites oficiais, então as datas vieram por busca e foram conferidas de novo em 08/11/2026 (as de dezembro batem com as páginas do BLS e do Fed). A de 13/01/2027 ainda é provisória. Confira antes de juntar. Nos meses seguintes, use `/atualizar-eventos`.
+- Kit: os eventos de 10/11/2026 a 13/01/2027 já estão em `kit-fase0/eventos-2026-11-a-2027-01.csv`. A sessão que montou o kit não acessava os sites oficiais, então as datas vieram por busca e foram conferidas de novo em 08/11/2026 (as de dezembro batem com as páginas do BLS e do Fed). A de 13/01/2027 ainda é provisória. Confira antes de juntar. Nos meses seguintes, use `/atualizar-eventos`.
 
 ## 11. Revisões
 
@@ -577,3 +572,31 @@ Acerto, ganho e perda médios em R, resultado médio por operação, maior sequ�
 - Claude Code, permissões: https://code.claude.com/docs/en/permissions
 - Binance no Brasil, notícias de outubro de 2026 (não oficiais): https://bpmoney.com.br/mercado/cripto/binance-restringe-8-servicos-retira-22-criptomoedas-brasil-regras-bc/ , https://livecoins.com.br/binance-removera-20-criptomoedas-e-diversos-produtos-a-brasileiros-para-se-adequar-a-regulacao/ e https://crypto.news/binance-to-cut-8-services-and-22-tokens-in-brazil/
 - Claude in Chrome, sites bloqueados: https://support.claude.com/en/articles/12902405-claude-in-chrome-troubleshooting
+
+## 16. Histórico do guia
+
+**Versão 1.3 (08/11/2026, segunda revisão)**
+- Seção 6: operador e guardião agendados sem janela (uma janela a cada 5 minutos atrapalha e pode roubar o foco) e como agendar aos 40 segundos.
+- Fase 0: reinício automático do Windows Update; a conferência de futuros é na conta que o robô vai usar.
+- Seção 7.8: identificadores das ordens com até 32 caracteres, só letras, números, `-` e `_`.
+- Seção 9: mais comandos que listam variáveis de ambiente bloqueados.
+- Atalhos chamam o Claude Code com `call`, o que funciona com qualquer forma de instalação.
+- Seção 10: arquivo de eventos renomeado (vai até janeiro de 2027); horário de verão no Brasil descartado para 2026/2027, conferido.
+- Histórico de versões movido para esta seção.
+
+**Versão 1.2 (08/11/2026, revisão do kit)**
+- Revisão diária: agendada do jeito padrão, a tarefa abre uma janela enquanto roda e não manda aviso; o guia agora diz isso e mostra como deixá-la oculta. O atalho e a rotina passam a liberar também a gravação do arquivo da revisão.
+- Binance e Brasil: detalhes da conta internacional (por iniciativa própria, só derivativos, chave criada nela) e o que a opção de mercado à vista exige.
+- Regras do guia e do `CLAUDE.md` iguais entre si (Chrome e controle da tela, testes do operador, respostas da Binance).
+- Stop com `closePosition=true`: sem `quantity` e sem `reduceOnly`.
+- Permissões: mudança em `.claude/` pede confirmação explícita; arquivo validado de novo.
+- Kit em `.zip`: desbloquear antes de extrair.
+- Fase 5: leitura estatística corrigida.
+
+**Versão 1.1 (07/11/2026)**
+- Binance e Brasil: novo item na Fase 0 e na seção 14. A Binance anunciou que não oferece futuros a residentes no Brasil e restringiu produtos no país a partir de 27/10/2026, com migração dos clientes para a Binance Brasil prevista até 29/10/2026.
+- Kit pronto: permissões reforçadas (seção 9), seção "Agente" para o `CLAUDE.md`, eventos de novembro e dezembro já levantados, rotinas `/revisao-diaria` e `/atualizar-eventos` e atalhos para abrir o agente.
+- Seção 9: as regras de bloqueio são uma barreira de comportamento, não um cofre.
+- Fase 5: 30 dias testam a execução, não provam que a estratégia ganha.
+- Seção 8: a extensão do Chrome trata corretoras como sites de alto risco.
+- O kit foi montado numa sessão na nuvem, sem acesso ao PC nem à Binance: nada dele foi testado no Windows. A Fase 0 confere tudo.

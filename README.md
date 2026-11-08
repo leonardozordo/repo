@@ -5,10 +5,11 @@ Kit para configurar o Claude Code como agente do robô de trade no PC de casa (W
 | Caminho | O que é |
 |---|---|
 | `pasta-do-robo/` | tudo o que vai para dentro da pasta `trade-automatizado` |
-| `pasta-do-robo/CONFIGURAR-AGENTE.md` | guia v1.2 que o Claude Code segue, fase a fase |
+| `pasta-do-robo/CONFIGURAR-AGENTE.md` | guia v1.3 que o Claude Code segue, fase a fase |
 | `pasta-do-robo/.claude/` | permissões e rotinas (`/revisao-diaria`, `/atualizar-eventos`) |
 | `pasta-do-robo/kit-fase0/` | seção "Agente" para o `CLAUDE.md` e eventos de nov/2026 a jan/2027 |
 | `docs/historico-robo-trade.md` | histórico e decisões do projeto |
+| `ferramentas/validar_kit.py` | conferência automática do kit, para sessões do Claude Code (precisa de `jsonschema` e `pyyaml`) |
 
 ## Como usar
 1. No app da Binance, confira se a conta abre posição de futuros (seção 14 do guia).
