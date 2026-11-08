@@ -109,7 +109,7 @@ Cada fase só começa com a aprovação do Leonardo.
 | Internet até a Binance | `py -3 -c "import sys; sys.path.insert(0, 'robo'); import binance, comum; print(comum.fmt_data(binance.testar_conexao()))"` | mostra a hora atual da Binance |
 | Relógio do Windows | Configurações > Hora e idioma > Data e hora > Sincronizar agora | sincronizado (as ordens assinadas dependem disso) |
 | Energia | Configurações > Sistema > Energia | suspensão em "Nunca" com o PC na tomada |
-| Reinício automático | Configurações > Windows Update > Opções avançadas > Horário ativo | horário ativo cobrindo o período em que o robô opera. Depois de um reinício, as tarefas só voltam com o Leonardo conectado (seção 6) |
+| Reinício automático | Configurações > Windows Update > Opções avançadas > Horário ativo | horário ativo cobrindo pelo menos as horas de entrada, das 8h às 22h (o Windows aceita no máximo 18 horas). Depois de um reinício, as tarefas só voltam com o Leonardo conectado (seção 6); os stops continuam na Binance |
 | Futuros na conta | o Leonardo abre o app da Binance > Futuros, na conta que o robô vai usar, e conta o que aparece | consegue abrir posição. Aviso de região, "somente reduzir" ou convite para outra conta: parar e decidir com ele (seção 14) |
 | Kit do agente | listar `.claude/settings.json`, `.claude/skills/`, `kit-fase0/` e os atalhos `abrir_agente.bat`, `abrir_agente_chrome.bat` e `revisao_diaria.bat` | todos presentes |
 
