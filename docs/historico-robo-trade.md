@@ -1,6 +1,6 @@
 # Robô de trade — histórico e decisões
 
-Atualizado em 07/11/2026 (guia v1.1)
+Atualizado em 08/11/2026 (guia v1.2)
 
 ## Objetivo
 Agente autônomo que lê gráficos e indicadores e abre e fecha operações de cripto na Binance sozinho. Todo o desenvolvimento fica centralizado neste projeto.
@@ -25,7 +25,7 @@ Agente autônomo que lê gráficos e indicadores e abre e fecha operações de c
 |---|---|
 | Pacote do robô (v4.1) | arquivo trade-automatizado.zip, enviado na conversa do projeto em 02/10 |
 | Código, atalhos e resultados no PC de casa | pasta trade-automatizado, extraída do zip |
-| Guia para o Claude Code configurar o agente (v1.1) | kit-agente.zip (sessão de 07/11) e pasta `pasta-do-robo/` do repositório; na pasta do robô: CONFIGURAR-AGENTE.md |
+| Guia para o Claude Code configurar o agente (v1.2) | kit-agente.zip (versão de 08/11) e GitHub `leonardozordo/repo`, ramo `claude/wizardly-lovelace-910v9b`, pasta `pasta-do-robo/` (repositório público); na pasta do robô: CONFIGURAR-AGENTE.md |
 | Kit do agente (permissões, seção "Agente" do CLAUDE.md, eventos, rotinas, atalhos) | mesmo kit; vai para dentro da pasta trade-automatizado |
 | Lógica dos trades em linguagem simples | este projeto: claude/logica-do-robo.md (cópia na pasta: LOGICA-DO-ROBO.md) |
 | Regras completas (v4.1), com o racional | este projeto: claude/regras-robo-v4.md (cópia na pasta: REGRAS-v4.md) |
@@ -49,13 +49,16 @@ Agente autônomo que lê gráficos e indicadores e abre e fecha operações de c
 - 07/11/2026 (sessão do Claude Code na nuvem): o Leonardo pediu de novo o agente operando a Binance pelo Chrome. Mantida a decisão anterior. Além dos motivos do guia, a extensão Claude in Chrome trata corretoras como sites de alto risco.
 - 07/11/2026: notícias de outubro de 2026 indicam que a Binance restringiu produtos no Brasil a partir de 27/10, previu migrar os clientes para a Binance Brasil até 29/10 e não oferece futuros a residentes (Lei 6.385/1976). Há relatos de posições de futuros em "somente reduzir" e de uma conta internacional separada (entidade de Abu Dhabi) para elegíveis. O risco de bloqueio assumido em 29/09 pode já ter virado bloqueio. Sem confirmação oficial: o Leonardo confere no app.
 - 07/11/2026: guia v1.1 e kit do agente: item de futuros na Fase 0, permissões reforçadas (e o aviso de que não são um cofre), seção "Agente" para o CLAUDE.md, eventos de 10/11/2026 a 13/01/2027, rotinas /revisao-diaria e /atualizar-eventos, atalhos abrir_agente.bat, abrir_agente_chrome.bat e revisao_diaria.bat. Montado na nuvem, sem acesso ao PC nem à Binance: nada foi testado no Windows.
+- 07/11/2026: kit enviado ao GitHub (`leonardozordo/repo`, ramo `claude/wizardly-lovelace-910v9b`). O repositório é público; recomendação: torná-lo privado.
+- 08/11/2026: revisão do kit (guia v1.2). Corrigido: a revisão diária agendada do jeito padrão abre uma janela e não manda aviso (o guia agora diz isso e mostra como ocultar); o atalho e a rotina da revisão passam a liberar a gravação do arquivo; regras do guia e da seção "Agente" iguais entre si; detalhes da conta internacional da Binance (por iniciativa própria, só derivativos, chave criada nela); stop com closePosition sem quantity nem reduceOnly; mudanças em .claude pedem confirmação. Datas de dezembro conferidas de novo. As duas rotinas foram reconhecidas pelo próprio Claude Code na sessão da nuvem.
 
 ## Status
-Aguardando o Leonardo: (1) confirmar no app se a conta abre posição de futuros; (2) copiar o kit para a pasta do robô e rodar a Fase 0 com o Claude Code.
+Aguardando o Leonardo: (1) confirmar no app se a conta abre posição de futuros; (2) copiar o kit (v1.2) para a pasta do robô e rodar a Fase 0 com o Claude Code.
 
 ## Próximos passos
 1. [Leonardo] Abrir o app da Binance > Futuros e ver se consegue abrir posição. Se não, escolher entre as opções da seção 14 do guia antes de seguir.
-2. [Leonardo] Copiar o conteúdo do kit para a pasta trade-automatizado, dar dois cliques em abrir_agente.bat e pedir a Fase 0.
+2. [Leonardo] Desbloquear o kit-agente.zip (Propriedades > Desbloquear), extrair na pasta trade-automatizado, dar dois cliques em abrir_agente.bat e pedir a Fase 0.
 3. [Claude Code] Fases 0 a 3 do guia, parando ao fim de cada uma para aprovação do Leonardo.
 4. [Leonardo] Fase 4 (liberação do dinheiro real), só se as fases anteriores passarem.
 5. [Claude] Revisão diária das 22h: opção A pelo app, se o recurso de pasta do PC estiver disponível; senão, opção B (revisao_diaria.bat no Agendador).
+6. [Leonardo] Tornar privado o repositório `leonardozordo/repo` (Settings > General > Danger Zone > Change repository visibility).

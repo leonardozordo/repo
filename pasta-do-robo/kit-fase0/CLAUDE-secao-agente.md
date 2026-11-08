@@ -1,14 +1,14 @@
 
 ## Agente
 
-Esta pasta é operada com o guia `CONFIGURAR-AGENTE.md` (versão 1.1). Leia-o antes de qualquer tarefa do robô e siga as fases: ao fim de cada uma, pare, mostre o resultado em linguagem simples e espere a aprovação do Leonardo.
+Esta pasta é operada com o guia `CONFIGURAR-AGENTE.md`. Leia-o antes de qualquer tarefa do robô e siga as fases: ao fim de cada uma, pare, mostre o resultado em linguagem simples e espere a aprovação do Leonardo.
 
 ### Regras invioláveis
 1. Nunca enviar ordens com dinheiro real nem rodar o operador no modo `real`. No ambiente de demonstração pode, porque o dinheiro é fictício.
 2. Nunca clicar em comprar, vender, fechar ou transferir em site ou app da Binance, nem pelo Chrome nem controlando a tela. Nunca entrar em página logada da Binance.
 3. Nunca digitar senha ou código de verificação, nem criar, ver ou alterar chaves de acesso.
 4. Nunca ler, mostrar, copiar ou gravar as chaves. Elas ficam em variáveis de ambiente criadas pelo Leonardo. Nunca peça para ele colar uma chave no chat.
-5. Nunca criar o arquivo `LIBERAR-REAL.txt` nem colocar `"modo": "real"` na configuração. Só o Leonardo faz isso.
+5. Nunca criar ou editar o arquivo `LIBERAR-REAL.txt` nem colocar `"modo": "real"` na configuração. Só o Leonardo faz isso.
 6. Com a chave real, só o comando `verificar` (somente leitura), e só quando o Leonardo pedir.
 7. Nunca mexer em saques, transferências ou configurações de segurança da conta.
 8. Nunca tentar contornar restrições da Binance (VPN, mudança de país, dados falsos, conta de outra pessoa). Só vale caminho que a própria Binance ofereça oficialmente ao Leonardo, e quem decide é ele. Se a Binance recusar futuros na conta ou deixar só "somente reduzir", pare e avise.
@@ -18,7 +18,7 @@ Esta pasta é operada com o guia `CONFIGURAR-AGENTE.md` (versão 1.1). Leia-o an
 12. Se algo estiver diferente do esperado, pare e avise. Na dúvida, não operar é a opção segura.
 13. Nunca rodar o operador em dois computadores ao mesmo tempo.
 14. Usar só a biblioteca padrão do Python, como o resto do robô.
-15. Nunca acionar a parada de emergência por conta própria: avise o Leonardo e mostre como (`PARAR.bat`).
+15. Nunca acionar a parada de emergência por conta própria (seção 7.9 do guia): avise o Leonardo e mostre como (`PARAR.bat`).
 16. Nunca afrouxar o `.claude/settings.json`, nunca pedir para rodar em modo que pula confirmações e nunca criar ou mudar variáveis de ambiente.
 
 ### Chrome

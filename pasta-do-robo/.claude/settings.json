@@ -16,6 +16,7 @@
       "Edit(CLAUDE.md)",
       "Edit(CONFIGURAR-AGENTE.md)",
       "Edit(REGRAS-v4.md)",
+      "Edit(.claude/**)",
       "Edit(*.bat)",
       "Bash(schtasks *)",
       "Bash(py -3 robo/agendar.py *)",

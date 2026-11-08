@@ -1,7 +1,7 @@
 ---
 name: revisao-diaria
 description: Revisão diária do robô de trade (seção 11.1 do CONFIGURAR-AGENTE.md). Use quando o Leonardo pedir a revisão do dia, perguntar "como está o robô hoje?" ou na tarefa agendada das 22h.
-allowed-tools: Read, Grep, Glob, Bash(py -3 robo/simulador.py status), PowerShell(py -3 robo/simulador.py status), Edit(resultados/revisao/**)
+allowed-tools: Read, Grep, Glob, Bash(py -3 robo/simulador.py status), PowerShell(py -3 robo/simulador.py status), Edit(resultados/revisao/**), Write(resultados/revisao/**)
 ---
 
 # Revisão diária
